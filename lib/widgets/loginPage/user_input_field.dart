@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class UserInputField extends StatelessWidget {
-  final TextEditingController usernameController;
+  final TextEditingController emailController;
   final TextEditingController passwordController;
 
   const UserInputField({
     super.key,
-    required this.usernameController,
+    required this.emailController,
     required this.passwordController,
   });
 
@@ -19,7 +19,7 @@ class UserInputField extends StatelessWidget {
         children: [
           //username textfield
           TextField(
-            controller: usernameController,
+            controller: emailController,
             decoration: InputDecoration(
               hintText: "Username",
               hintStyle: TextStyle(color: Colors.grey[500]),
@@ -43,6 +43,7 @@ class UserInputField extends StatelessWidget {
               hintStyle: TextStyle(color: Colors.grey[500]),
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.white),
+                borderRadius: BorderRadius.circular(10),
               ),
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.grey.shade400),

@@ -2,17 +2,23 @@ import 'package:chat_app/widgets/loginPage/continue_with_text.dart';
 import 'package:chat_app/widgets/loginPage/sign_in_button.dart';
 import 'package:chat_app/widgets/loginPage/square_tile.dart';
 import 'package:chat_app/widgets/loginPage/user_input_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
   //text editing controller
-  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   //User tapped SignIn Button
-  void signIn() {}
+  void signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailController.text,
+      password: passwordController.text,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +43,7 @@ class LoginPage extends StatelessWidget {
 
             //User input field
             UserInputField(
-              usernameController: usernameController,
+              emailController: emailController,
               passwordController: passwordController,
             ),
 
@@ -60,7 +66,6 @@ class LoginPage extends StatelessWidget {
             //google + apple sign in button
             Row(
               mainAxisAlignment: .center,
-
               children: [
                 SquareTile(imagePath: "assets/images/Google.png"),
                 SquareTile(imagePath: "assets/images/Apple.png"),
@@ -69,7 +74,7 @@ class LoginPage extends StatelessWidget {
 
             //not a member? register now
             Padding(
-              padding: const EdgeInsets.only(top: 25, bottom: 50),
+              padding: const EdgeInsets.only(top: 25, bottom: 40),
               child: Row(
                 mainAxisAlignment: .center,
                 children: [
