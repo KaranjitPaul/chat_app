@@ -2,7 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const new({super.key});
+  HomePage({super.key});
+
+  final user = FirebaseAuth.instance.currentUser!;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(child: Text("LOGGED IN")),
+      body: Center(child: Text("LOGGED IN, ${user.email}")),
     );
   }
 }
