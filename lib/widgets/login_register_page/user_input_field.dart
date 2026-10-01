@@ -20,9 +20,10 @@ class UserInputField extends StatelessWidget {
           //username textfield
           TextField(
             controller: emailController,
+
             decoration: InputDecoration(
-              hintText: "Username",
-              hintStyle: TextStyle(color: Colors.grey[500]),
+              labelText: "Username",
+              labelStyle: TextStyle(color: Colors.grey[500]),
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.white),
                 borderRadius: BorderRadius.circular(10),
@@ -39,8 +40,8 @@ class UserInputField extends StatelessWidget {
           TextField(
             controller: passwordController,
             decoration: InputDecoration(
-              hintText: "Password",
-              hintStyle: TextStyle(color: Colors.grey[500]),
+              labelText: "Password",
+              labelStyle: TextStyle(color: Colors.grey[500]),
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.white),
                 borderRadius: BorderRadius.circular(10),
