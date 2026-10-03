@@ -1,9 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:chat_app/firebase_options.dart';
 import 'package:chat_app/pages/auth_page.dart';
 import 'package:chat_app/pages/home_page.dart';
 import 'package:chat_app/utils/routes.dart';
 import 'package:chat_app/utils/themes.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -20,13 +20,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.system,
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       home: AuthPage(),
-      routes: {
-        MyRoutes.homePage: (context) => HomePage(),
-      },
+      routes: {MyRoutes.homePage: (context) => HomePage()},
     );
   }
 }

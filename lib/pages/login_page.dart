@@ -1,3 +1,4 @@
+import 'package:chat_app/services/auth_services.dart';
 import 'package:chat_app/widgets/login_register_page/continue_with_text.dart';
 import 'package:chat_app/widgets/login_register_page/sign_in_button.dart';
 import 'package:chat_app/widgets/login_register_page/square_tile.dart';
@@ -7,7 +8,7 @@ import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
-  LoginPage({super.key, required this.onTap});
+  const LoginPage({super.key, required this.onTap});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -110,8 +111,21 @@ class _LoginPageState extends State<LoginPage> {
               Row(
                 mainAxisAlignment: .center,
                 children: [
-                  SquareTile(imagePath: "assets/images/Google.png"),
-                  SquareTile(imagePath: "assets/images/Apple.png"),
+                  SquareTile(
+                    imagePath: "assets/images/Google.png",
+                    onTap: () => AuthServices().signInWithGoogle(),
+                  ),
+                  SquareTile(
+                    imagePath: "assets/images/Apple.png",
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("Feature not yet added!"),
+                          backgroundColor: Colors.grey[700],
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
 

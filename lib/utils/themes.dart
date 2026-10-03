@@ -9,6 +9,10 @@ class MyTheme {
     ),
   );
   static ThemeData darkTheme(BuildContext context) => ThemeData(
-    //will be added later
+    colorScheme: ColorScheme.light(
+      surface: Colors.grey.shade700,
+      primaryContainer: Color(0xff2563EB),
+      onPrimaryContainer: Colors.white,
+    ),
   );
 }
