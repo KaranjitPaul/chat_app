@@ -1,4 +1,4 @@
-import 'package:chat_app/services/auth_services.dart';
+import 'package:chat_app/services/auth/auth_services.dart';
 import 'package:chat_app/widgets/login_register_page/continue_with_text.dart';
 import 'package:chat_app/widgets/login_register_page/sign_in_button.dart';
 import 'package:chat_app/widgets/login_register_page/square_tile.dart';
@@ -21,12 +21,13 @@ class _RegisterPageState extends State<RegisterPage> {
   final confirmPasswordController = TextEditingController();
 
   //User tapped SignIn Button
-  void SignUserUp() async {
+  void signUserUp() async {
     if (passwordController.text != confirmPasswordController.text) {
       showMessage("Passwords don't match!");
       return;
     }
     final navigator = Navigator.of(context, rootNavigator: true);
+    final _auth = AuthServices();
 
     //show loading circle
     showDialog(
@@ -39,7 +40,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
     //try creating using user
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await _auth.signUpWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
@@ -74,7 +75,6 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Column(
             mainAxisAlignment: .center,
             children: [
-              
               //Logo/Welcome Banner
               SizedBox(
                 height: 330,
@@ -120,7 +120,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
 
               //sign in button
-              SignInButton(text: "Sign Up", onTap: SignUserUp),
+              SignInButton(text: "Sign Up", onTap: signUserUp),
 
               //or continue with
               ContinueWithText(),

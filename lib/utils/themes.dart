@@ -6,6 +6,7 @@ class MyTheme {
       surface: Colors.grey.shade300,
       primaryContainer: Color(0xff2563EB),
       onPrimaryContainer: Colors.white,
+      secondary: Colors.white,
     ),
   );
   static ThemeData darkTheme(BuildContext context) => ThemeData(

@@ -1,4 +1,4 @@
-import 'package:chat_app/services/auth_services.dart';
+import 'package:chat_app/services/auth/auth_services.dart';
 import 'package:chat_app/widgets/login_register_page/continue_with_text.dart';
 import 'package:chat_app/widgets/login_register_page/sign_in_button.dart';
 import 'package:chat_app/widgets/login_register_page/square_tile.dart';
@@ -22,6 +22,7 @@ class _LoginPageState extends State<LoginPage> {
   //User tapped SignIn Button
   void signIn() async {
     final navigator = Navigator.of(context, rootNavigator: true);
+    final _auth = AuthServices();
 
     //show loading circle
     showDialog(
@@ -34,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
 
     //try sign in
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await _auth.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
