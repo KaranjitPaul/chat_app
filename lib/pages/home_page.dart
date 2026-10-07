@@ -72,7 +72,7 @@ class HomePage extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ChatPage(receiverEmail: userData["email"]),
+              builder: (context) => ChatPage(receiverEmail: userData["email"], receiverID: userData["uid"],),
             ),
           );
         },
