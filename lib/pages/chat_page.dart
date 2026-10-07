@@ -1,5 +1,6 @@
 import 'package:chat_app/services/auth/auth_services.dart';
 import 'package:chat_app/services/chat/chat_services.dart';
+import 'package:chat_app/widgets/chat_bubble.dart';
 import 'package:chat_app/widgets/message_text_field.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,14 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(receiverEmail)),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: Text(receiverEmail),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.grey[700],
+        elevation: 0,
+      ),
       body: Column(
         children: [
           //display all message
@@ -75,7 +83,19 @@ class ChatPage extends StatelessWidget {
   Widget _buildMessageItem(DocumentSnapshot doc) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
 
-    return Text(data["message"]);
+    //is current user
+    bool isCurrentUser =
+        data['senderID'] == _authServices.getCurrentUser()!.uid;
+
+    //align messages to the right side if sender is the current user, otherwise to the left
+    var alignment = isCurrentUser
+        ? Alignment.centerRight
+        : Alignment.centerLeft;
+
+    return Align(
+      alignment: alignment,
+      child: ChatBubble(message: data["message"], isCurrentUser: isCurrentUser),
+    );
   }
 
   //build message input
@@ -96,7 +116,7 @@ class ChatPage extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 15),
           child: IconButton(
             onPressed: sendMessage,
-            icon: Icon(Icons.arrow_circle_right_outlined, size: 50),
+            icon: Icon(Icons.arrow_circle_up_outlined, size: 50),
           ),
         ),
       ],
